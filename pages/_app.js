@@ -1,9 +1,5 @@
 import { Provider } from 'next-auth/client'
-import { useEffect } from 'react'
 import 'tailwindcss/tailwind.css'
-import { loadGoogleScript } from '../utils/loadGoogleScript'
-const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-const googleKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
 // Use the <Provider> to improve performance and allow components that call
 // `useSession()` anywhere in your application to access the `session` object.
