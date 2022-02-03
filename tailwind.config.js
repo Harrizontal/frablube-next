@@ -17,8 +17,17 @@ module.exports = {
         'primary': '#F2EFE6',
         'beige':'#F9F6F6'
       }),
+      width: {
+        '128': '32rem',
+        '140': '35rem',
+        '152': '38rem',
+        '160':'40rem'
+      },
       height: {
-        '128': '32rem'
+        '128': '32rem',
+        '140': '35rem',
+        '152': '38rem',
+        '160':'40rem'
       }
     },
   },

@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react'
-import { supabase } from '../utils/supabaseClient'
-import Auth from '../components/Auth'
-import Account from '../components/Account'
-import { ChevronRightIcon, StarIcon } from '@heroicons/react/solid'
+import Script from 'next/script'
+import Image from 'next/image'
+import { useRef } from 'react'
+import styled from 'styled-components'
 
 const stats = [
   { label: 'Founded', value: '2021' },
@@ -11,172 +10,328 @@ const stats = [
   { label: 'Raised', value: '$25M' },
 ]
 
-const logos = [
-  { name: 'Transistor', url: 'https://tailwindui.com/img/logos/transistor-logo-gray-400.svg' },
-  { name: 'Mirage', url: 'https://tailwindui.com/img/logos/mirage-logo-gray-400.svg' },
-  { name: 'Tuple', url: 'https://tailwindui.com/img/logos/tuple-logo-gray-400.svg' },
-  { name: 'Laravel', url: 'https://tailwindui.com/img/logos/laravel-logo-gray-400.svg' },
-  { name: 'StaticKit', url: 'https://tailwindui.com/img/logos/statickit-logo-gray-400.svg' },
-  { name: 'Workcation', url: 'https://tailwindui.com/img/logos/workcation-logo-gray-400.svg' },
-]
+  const ImageWrapper = styled.div`
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    transition-duration: 200ms;
+  `
 
-const footerNavigation = {
-  main: [
-    { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Accessibility', href: '#' },
-    { name: 'Partners', href: '#' },
-  ],
-  social: [
-    {
-      name: 'Facebook',
-      href: '#',
-      icon: (props) => (
-        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-          <path
-            fillRule="evenodd"
-            d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-            clipRule="evenodd"
-          />
-        </svg>
-      ),
-    },
-    {
-      name: 'Instagram',
-      href: '#',
-      icon: (props) => (
-        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-          <path
-            fillRule="evenodd"
-            d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-            clipRule="evenodd"
-          />
-        </svg>
-      ),
-    },
-    {
-      name: 'Twitter',
-      href: '#',
-      icon: (props) => (
-        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-          <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-        </svg>
-      ),
-    },
-    {
-      name: 'GitHub',
-      href: '#',
-      icon: (props) => (
-        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-          <path
-            fillRule="evenodd"
-            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-            clipRule="evenodd"
-          />
-        </svg>
-      ),
-    },
-    {
-      name: 'Dribbble',
-      href: '#',
-      icon: (props) => (
-        <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
-          <path
-            fillRule="evenodd"
-            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-            clipRule="evenodd"
-          />
-        </svg>
-      ),
-    },
-  ],
-}
+  const ProductContainer = styled.div`
+    background-color: rgba(249, 246, 246);
+    width: 100%;
+    position: relative;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: fit-content;
+    padding-bottom: 20px;
+    height: 160vw;
+    @media (min-width: 768px) {
+      // background-color: pink;
+      height: 100vw;
+    }
+  `
+
+  const ProductImageOne = styled.div`
+    width: 60%;
+    position: absolute;
+    cursor: pointer;
+    top: 5vw;
+    left: 5vw;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    transition-duration: 200ms;
+    &:hover ${ImageWrapper}{
+      transform: rotate(-5deg);
+    }
+    &:hover > div.absolute > div {
+      background-color: white
+    }
+    // &:hover > div.absolute > span:nth-child(2) {
+    //   opacity: 1
+    // }
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+  `
+
+  const ProductImageTwo = styled.div`
+    width: 55%;
+    position: absolute;
+    cursor: pointer;
+    left: 60vw;
+    top: 15vw;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    transition-duration: 200ms;
+    &:hover ${ImageWrapper}{
+      transform: rotate(-30deg);
+    }
+    & > ${ImageWrapper}{
+      transform: rotate(-25deg);
+    }
+    &:hover > div.absolute > div {
+      background-color: white
+    }
+    @media (min-width: 768px) {
+      width: 50%;
+    }
+  `
+
+  const ProductImageThree = styled.div`
+    width: 60%;
+    position: absolute;
+    cursor: pointer;
+    left: -15vw;
+    top: 70vw;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    transition-duration: 200ms;
+    &:hover ${ImageWrapper}{
+      transform: rotate(35deg);
+    }
+    & > ${ImageWrapper}{
+      transform: rotate(40deg);
+    }
+    &:hover > div.absolute > div {
+      background-color: white
+    }
+    @media (min-width: 768px) {
+      width: 60%;
+      top: 50vw;
+      & > ${ImageWrapper}{
+        transform: rotate(70deg);
+      }
+      &:hover ${ImageWrapper}{
+        transform: rotate(65deg);
+      }
+    }
+  `
+
+  const ProductImageFour = styled.div`
+    width: 50%;
+    position: absolute;
+    cursor: pointer;
+    left: 45vw;
+    top: 85vw;
+    transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+    transition-duration: 200ms;
+    &:hover ${ImageWrapper}{
+      transform: rotate(-5deg);
+    }
+    &:hover > div.absolute > div {
+      background-color: white
+    }
+    @media (min-width: 768px) {
+      width: 40%;
+      top: 60vw;
+      left: 40vw;
+    }
+  `
 
 export default function Home() {
 
+  const subscribeNewsletterRef = useRef(null)
+
+  const scrollToNewsletter = () => {
+    subscribeNewsletterRef.current?.scrollIntoView({behavior: 'smooth'})
+  }
+
   return (
-    <div className='bg-white'>
-      <div className='flex h-128 bg-gray-300 justify-between'>
-        <div>
-          <span>Consumer</span>
-          <span>Every lube, sastified</span>
-        </div>
-        <div className='w-1/2 bg-red-300'>
-          Image here
-        </div>
-      </div>
-      <div className='bg-black w-full h-14'>
-
-      </div>
-      <div className='bg-red-500 w-full h-14'>
-
-      </div>
-      <div className='flex flex-col h-auto justify-between w-10/12 mx-auto mt-20 xl:flex-row xl:h-96 xl:w-8/12'>
-        <div className='w-full mb-6 lg:w-1/2 lg:mb-0'>
-          <span className='text-xl'>Overview</span>
-        </div>
-        <div className='w-full lg:w-1/2'>
-          <span className='text-4xl'>Every day, GrabFood delivers food and beverages from restaurants to millions of consumers islandwide. With a few taps, you too can have your cravings delivered to your doorstep.</span>
-        </div>
-      </div>
-      <div className='mt-10 w-10/12 pb-24 mx-auto xl:w-8/12'>
-        <div>
-          <span className='text-xl'>Why GrubLotion?</span>
-        </div>
-
-        {stats.map((stat) => (
-                  <div className='flex flex-col justify-between mb-20 mt-20 xl:flex-row'>
-                  <div className='mb-4'>
-                    <span className='text-4xl font-medium'>1</span>
-                  </div>
-                  <div className='w-full lg:w-5/12 mb-4'>
-                    <span className='text-4xl font-medium'>Foods for all cravings</span>
-                  </div>
-                  <div className='w-full lg:w-6/12'>
-                    <span className='text-lg font-light'>From hawker fare to Michelin restaurants, our wide selection will satisy your appetite</span>
-                  </div>      
-                </div>
-                ))}
-
-        
-      </div>
-      <div className='bg-beige'>
-        <div className='pt-24 pb-36 w-10/12 mx-auto xl:w-8/12'>
-          <div>
-            <span className='font-light text-xl'>Ways to order</span>
-          </div>
-          {stats.map((stat) => (
-            <div className='flex justify-between mb-20 mt-20'>
-                <div className='flex flex-col mr-5'>
-                  <span className='text-4xl mb-5'>Instant Delivery</span>
-                  <span className='text-lg font-light'>No matter where you are, you can order food in your area or get islandwide delivery, delivered straight to your door.</span>
-                </div>
-                <div className='w-4/5 bg-purple-200'>
-
-                </div>
-            </div>
-          ))}
-          <div className='w-full h-80 bg-purple-500'></div>
-        </div>
-      </div>
+    <>
+      <Script src="https://fierce-inventor-7508.ck.page/d68e008518/index.js"/>
+      <Script scr="https://f.convertkit.com/ckjs/ck.5.js"/>
       <div className='bg-white'>
-        <div className='pt-24 pb-24 w-10/12 mx-auto xl:w-8/12'>
-          <div>
-            <span className='text-xl'>FAQs</span>
-          </div>
-          <div className='flex mt-10'>
-            <div className='flex flex-col'>
-              <span>Got questions? We've got answers</span>
-              <span>For more questions, please visit our Help Centre</span>
+        <div className='flex flex-col h-160 relative bg-gray-300 justify-between lg:flex-row'>
+          <div className='absolute w-full bottom-96 lg:bottom-32'> 
+            <div className='w-11/12 mx-auto bg-pink-300 lg:w-9/12'>
+              <div className="flex flex-col w-full lg:w-7/12 bg-green-700">
+                <span className='text-xl mb-4'>Consumer</span>
+                <span className='text-6xl'>Every lotion, sastified.</span>
+              </div>
             </div>
-            <div>
-              <span>Hello</span>
+          </div>
+          <div className='flex flex-col justify-end bg-green-500 h-1/2 w-11/12 mx-auto lg:p-32 lg:w-7/12 lg:h-full'>
+            {/* <span className='text-xl mb-4'>Consumer</span>
+            <span className='text-5xl'>Every lotion, sastified.</span> */}
+          </div>
+          <div className='w-full bg-red-300 h-1/2 lg:w-5/12 lg:h-full'>
+            Image here
+          </div>
+        </div>
+        <div className='bg-black w-full h-20'>
+          <div className='w-11/12 h-full mx-auto flex items-center lg:w-9/12'>
+            <button onClick={scrollToNewsletter}><span className='text-white'>Get on the waitlist</span></button>
+          </div>
+        </div>
+        <div className='bg-red-500 w-full h-20'>
+
+        </div>
+        <div className='flex flex-col h-auto justify-between w-11/12 mx-auto mt-20 lg:flex-row lg:h-96 lg:w-9/12'>
+          <div className='w-full mb-6 lg:w-1/2 lg:mb-0'>
+            <span className='text-xl'>Overview</span>
+          </div>
+          <div className='w-full lg:w-1/2'>
+            <span className='text-4xl'>Every day, FrabLube delivers food and beverages from restaurants to millions of consumers islandwide. With a few taps, you too can have your cravings delivered to your doorstep.</span>
+          </div>
+        </div>
+        <div className='mt-10 w-11/12 pb-24 mx-auto lg:w-9/12'>
+
+          <div className='border-t-2 border-gray-700'>
+
+          </div>
+          <div className='mt-20'>
+            <span className='text-xl'>Why FrabLube?</span>
+          </div>
+
+          <div className="divide-y-2 divide-gray-300">
+          {stats.map((stat) => (
+                  <div className='flex flex-col justify-between mb-20 pt-20 lg:flex-row'>
+                    <div className='mb-4'>
+                      <span className='text-4xl font-medium'>1</span>
+                    </div>
+                    <div className='w-full lg:w-5/12 mb-4'>
+                      <span className='text-4xl font-medium'>Foods for all cravings</span>
+                    </div>
+                    <div className='w-full lg:w-6/12'>
+                      <span className='text-lg font-light'>From hawker fare to Michelin restaurants, our wide selection will satisy your appetite</span>
+                    </div>      
+                  </div>
+                  ))}
+          </div>
+        </div>
+        
+        <div className='pt-20' style={{backgroundColor:"rgba(249, 246, 246)"}}>
+          <div className='w-11/12 mx-auto pt-10 pb-10 lg:h-96 lg:w-9/12'>
+            <div className='flex flex-col h-auto justify-between lg:flex-row'>
+              <div className='w-full mb-10 lg:w-4/6 lg:mb-0'>
+                <span className='text-xl'>FrabLube Summer 2022 Exclusives</span>
+              </div>
+              <div className='w-full lg:w-2/6'>
+                <div className='grid grid-rows-4 grid-cols-1 grid-flow-col gap-4'>
+                  <div className='flex flex-row'>
+                    <span className='font-bold text-xl'>A</span>
+                    <div className='flex flex-col ml-4'>
+                      <span className='font-bold text-xl'>Classic Lube 2020</span>
+                      <span className='text-xl'>SPF 30 Sunscreen Lube</span>
+                    </div>
+                  </div>
+                  <div className='flex flex-row'>
+                    <span className='font-bold text-xl'>B</span>
+                    <div className='flex flex-col ml-4'>
+                      <span className='font-bold text-xl'>Classic Lube 2020</span>
+                      <span className='text-xl'>SPF 30 Sunscreen Lube</span>
+                    </div>
+                  </div>
+                  <div className='flex flex-row'>
+                    <span className='font-bold text-xl'>C</span>
+                    <div className='flex flex-col ml-4'>
+                      <span className='font-bold text-xl'>Classic Lube 2020</span>
+                      <span className='text-xl'>SPF 30 Sunscreen Lube</span>
+                    </div>
+                  </div>
+                  <div className='flex flex-row'>
+                    <span className='font-bold text-xl'>D</span>
+                    <div className='flex flex-col ml-4'>
+                      <span className='font-bold text-xl'>Classic Lube 2020</span>
+                      <span className='text-xl'>SPF 30 Sunscreen Lube</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <ProductContainer>
+          <ProductImageOne>
+            <ImageWrapper>
+              <Image src="/image1.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain'/>
+            </ImageWrapper>
+            <div className='absolute w-5/6 flex' style={{left: '10vw', top: 0}}>
+              <div className=' w-min border-2 border-black hover:bg-white mx-0'>
+                <span className='mx-2'>A</span>
+              </div>
+            </div>
+          </ProductImageOne>
+          <ProductImageTwo>
+            <ImageWrapper>
+              <Image src="/image2.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain'/>
+            </ImageWrapper>
+            <div className='absolute w-5/6 flex' style={{left: '5vw', top: 0}}>
+              <div className=' w-min border-2 border-black hover:bg-white mx-0'>
+                <span className='mx-2'>B</span>
+              </div>
+            </div>
+          </ProductImageTwo>
+          <ProductImageThree>
+            <ImageWrapper>
+              <Image src="/image3.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain'/>
+            </ImageWrapper>
+            <div className='absolute w-5/6 flex' style={{left: '50vw', top: '10vw'}}>
+              <div className=' w-min border-2 border-black hover:bg-white mx-0'>
+                <span className='mx-2'>C</span>
+              </div>
+            </div>
+          </ProductImageThree>
+          <ProductImageFour>
+            <ImageWrapper>
+              <Image src="/image4.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain'/>
+            </ImageWrapper>
+            <div className='absolute w-5/6 flex' style={{left: '30vw', top: '10vw'}}>
+              <div className=' w-min border-2 border-black hover:bg-white mx-0'>
+                <span className='mx-2'>D</span>
+              </div>
+            </div>
+          </ProductImageFour>
+        </ProductContainer>
+        <div className='bg-beige'>
+          <div className='pt-24 pb-36 w-11/12 mx-auto lg:w-9/12'>
+            <div>
+              <span className='font-light text-xl'>Ways to order</span>
+            </div>
+            {stats.map((stat) => (
+              <div className='flex flex-col justify-between mb-20 mt-20 lg:flex-row'>
+                  <div className='flex flex-col mr-8 mb-5 lg:mb-0'>
+                    <span className='text-4xl mb-5'>Instant Delivery</span>
+                    <span className='text-lg font-light'>No matter where you are, you can order food in your area or get islandwide delivery, delivered straight to your door.</span>
+                  </div>
+                  <div className='h-60 bg-purple-200 lg:w-128'>
+
+                  </div>
+              </div>
+            ))}
+            <div className='w-full h-80 bg-purple-500'></div>
+          </div>
+        </div>
+        <div className='bg-white'>
+          <div className='flex flex-col w-11/12 mx-auto mt-20 pb-20 lg:w-9/12 lg:flex-row'>
+            <div className='flex flex-col items-start mr-16 w-full lg:w-3/5'>
+              <span className='text-4xl mb-5'>Ready to dominate Asia with Lotion?</span>
+              <span className='text-lg font-light'>Sign up for our waiting list</span>
+              <span className='text-lg font-light'>Just joking. Sign up to nutstage to hear what happens next</span>
+            </div>
+            <div className='flex flex-row w-full mt-8 lg:mt-0 lg:w-2/5' ref={subscribeNewsletterRef}>
+              <form action="https://app.convertkit.com/forms/2958770/subscriptions" class="seva-form formkit-form" className='w-full' method="post" data-sv-form="2958770" data-uid="d68e008518" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;Success! Now check your email to confirm your subscription.&quot;,&quot;redirect_url&quot;:&quot;&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://convertkit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}">
+              <div data-style="clean">
+                <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
+                <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
+                  <div>
+                    <input aria-label="First Name" className='w-full' name="fields[first_name]" required="" placeholder="First Name" type="text" />
+                  </div>
+                  <div className='mt-2'>
+                    <input name="email_address" className='w-full' aria-label="Email Address" placeholder="Email Address" required="" type="email"/>
+                  </div>
+                <button data-element="submit" class="formkit-submit formkit-submit mt-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full">
+                  <div class="formkit-spinner"><div>
+                    </div><div></div><div></div></div><span className='w-full'>Subscribe</span></button>
+                  </div>          
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div className='bg-white'>
+          <div className='flex flex-col pt-24 pb-10 w-11/12 mx-auto lg:w-11/12 lg:flex-row lg:justify-between'>
+            <span className='text-sm'>© Copyright 2021 FrabLube Technologies, Inc. All rights reserved. Various trademarks held by their respective owners</span>
+            <span className='text-sm mt-8 lg:mt-0'><a href='#'>Twitter</a></span>
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
