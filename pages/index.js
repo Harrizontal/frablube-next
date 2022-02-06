@@ -2,12 +2,20 @@ import Script from 'next/script'
 import Image from 'next/image'
 import { useRef } from 'react'
 import styled from 'styled-components'
+import Head from 'next/head'
 
 const stats = [
-  { label: 'Founded', value: '2021' },
+  { label: 'Sensational enhancing formulas', value: 'Designed to make the wearer, look, feel and smell like they’ve been to paradise and back.' },
   { label: 'Employees', value: '5' },
   { label: 'Beta Users', value: '521' },
   { label: 'Raised', value: '$25M' },
+]
+
+
+const whyFrabLube = [
+  { number: 1, title: "Nature's enhancing formulas", description: 'Designed to make the wearer, look and feel like they’ve been to paradise and back.' },
+  { number: 2, title: "Sensual waves promised", description: "Make you feel like you’re on a getaway in the golden age of sensitivity in the best way" },
+  { number: 3, title: 'Gentle enough for the all types', description: "Made for those with sensitive skin in mind and of course, no stains on clothing" }
 ]
 
   const ImageWrapper = styled.div`
@@ -136,13 +144,17 @@ export default function Home() {
     <>
       <Script src="https://fierce-inventor-7508.ck.page/d68e008518/index.js"/>
       <Script scr="https://f.convertkit.com/ckjs/ck.5.js"/>
+      <Head>
+        <title>FrabLube | Taking over the Lube industry</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
       <div className='bg-white'>
         <div className='flex flex-col h-160 relative bg-gray-300 justify-between lg:flex-row'>
           <div className='absolute w-full bottom-96 lg:bottom-32'> 
             <div className='w-11/12 mx-auto bg-pink-300 lg:w-9/12'>
               <div className="flex flex-col w-full lg:w-7/12 bg-green-700">
-                <span className='text-xl mb-4'>Consumer</span>
-                <span className='text-6xl'>Every lotion, sastified.</span>
+                <span className='text-xl mb-4'>For everyone, duh</span>
+                <span className='text-7xl'>Every lotion, sastified.</span>
               </div>
             </div>
           </div>
@@ -180,16 +192,16 @@ export default function Home() {
           </div>
 
           <div className="divide-y-2 divide-gray-300">
-          {stats.map((stat) => (
+          {whyFrabLube.map((reason) => (
                   <div className='flex flex-col justify-between mb-20 pt-20 lg:flex-row'>
                     <div className='mb-4'>
-                      <span className='text-4xl font-medium'>1</span>
+                      <span className='text-4xl font-medium'>{reason.number}</span>
                     </div>
                     <div className='w-full lg:w-5/12 mb-4'>
-                      <span className='text-4xl font-medium'>Foods for all cravings</span>
+                      <span className='text-4xl font-medium'>{reason.title}</span>
                     </div>
                     <div className='w-full lg:w-6/12'>
-                      <span className='text-lg font-light'>From hawker fare to Michelin restaurants, our wide selection will satisy your appetite</span>
+                      <span className='text-lg font-light'>{reason.description}</span>
                     </div>      
                   </div>
                   ))}
@@ -306,7 +318,7 @@ export default function Home() {
               <span className='text-lg font-light'>Just joking. Sign up to nutstage to hear what happens next</span>
             </div>
             <div className='flex flex-row w-full mt-8 lg:mt-0 lg:w-2/5' ref={subscribeNewsletterRef}>
-              <form action="https://app.convertkit.com/forms/2958770/subscriptions" class="seva-form formkit-form" className='w-full' method="post" data-sv-form="2958770" data-uid="d68e008518" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;Success! Now check your email to confirm your subscription.&quot;,&quot;redirect_url&quot;:&quot;&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://convertkit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}">
+              <form action="https://app.convertkit.com/forms/2958770/subscriptions" className='w-full' class="seva-form formkit-form"  method="post" data-sv-form="2958770" data-uid="d68e008518" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;Success! Now check your email to confirm your subscription.&quot;,&quot;redirect_url&quot;:&quot;&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://convertkit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}">
               <div data-style="clean">
                 <ul class="formkit-alert formkit-alert-error" data-element="errors" data-group="alert"></ul>
                 <div data-element="fields" data-stacked="false" class="seva-fields formkit-fields">
