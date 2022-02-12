@@ -33,6 +33,6 @@
   "devDependencies": {
     "autoprefixer": "^10.3.6",
     "postcss": "^8.3.8",
-    "tailwindcss": "^3.0.21"
+    "tailwindcss": "^2.2.16"
   }
 }
