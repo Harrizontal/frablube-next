@@ -128,7 +128,7 @@ const whyFrabLube = [
     @media (min-width: 768px) {
       width: 40%;
       top: 60vw;
-      left: 40vw;
+      left: 50vw;
     }
   `
 
@@ -149,21 +149,21 @@ export default function Home() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className='bg-white'>
-        <div className='flex flex-col h-160 relative bg-gray-300 justify-between lg:flex-row'>
+        <div className='flex flex-col h-160 relative justify-between lg:flex-row'>
           <div className='absolute w-full bottom-96 lg:bottom-32'> 
-            <div className='w-11/12 mx-auto bg-pink-300 lg:w-9/12'>
-              <div className="flex flex-col w-full lg:w-7/12 bg-green-700">
+            <div className='w-11/12 mx-auto lg:w-9/12'>
+              <div className="flex flex-col w-full lg:w-7/12">
                 <span className='text-xl mb-4'>For everyone, duh</span>
-                <span className='text-7xl'>Every lotion, sastified.</span>
+                <span className='text-7xl'>Every Lube, sastified.</span>
               </div>
             </div>
           </div>
-          <div className='flex flex-col justify-end bg-green-500 h-1/2 w-11/12 mx-auto lg:p-32 lg:w-7/12 lg:h-full'>
+          <div className='flex flex-col justify-end bg-white h-1/2 w-11/12 mx-auto lg:p-32 lg:w-7/12 lg:h-full'>
             {/* <span className='text-xl mb-4'>Consumer</span>
             <span className='text-5xl'>Every lotion, sastified.</span> */}
           </div>
-          <div className='w-full bg-red-300 h-1/2 lg:w-5/12 lg:h-full'>
-            Image here
+          <div className='w-full h-1/2 relative lg:w-5/12 lg:h-full'>
+            <Image src="/hero_lube.jpg" layout='fill' objectFit="cover"/>
           </div>
         </div>
         <div className='bg-black w-full h-20'>
@@ -171,7 +171,7 @@ export default function Home() {
             <button onClick={scrollToNewsletter}><span className='text-white'>Get on the waitlist</span></button>
           </div>
         </div>
-        <div className='bg-red-500 w-full h-20'>
+        <div className='w-full h-20' style={{backgroundColor: "#267B73"}}>
 
         </div>
         <div className='flex flex-col h-auto justify-between w-11/12 mx-auto mt-20 lg:flex-row lg:h-96 lg:w-9/12'>
@@ -179,7 +179,7 @@ export default function Home() {
             <span className='text-xl'>Overview</span>
           </div>
           <div className='w-full lg:w-1/2'>
-            <span className='text-4xl'>Every day, FrabLube delivers food and beverages from restaurants to millions of consumers islandwide. With a few taps, you too can have your cravings delivered to your doorstep.</span>
+            <span className='text-4xl'>Every day, FrabLube delivers lube and towels to millions of consumers islandwide. With a few squeeze on any of the lube, we assure you to have a great time (ok, it depends...)</span>
           </div>
         </div>
         <div className='mt-10 w-11/12 pb-24 mx-auto lg:w-9/12'>
@@ -209,39 +209,39 @@ export default function Home() {
         </div>
         
         <div className='pt-20' style={{backgroundColor:"rgba(249, 246, 246)"}}>
-          <div className='w-11/12 mx-auto pt-10 pb-10 lg:h-96 lg:w-9/12'>
+          <div className='w-11/12 mx-auto pt-10 pb-10  lg:h-128 lg:w-9/12'>
             <div className='flex flex-col h-auto justify-between lg:flex-row'>
               <div className='w-full mb-10 lg:w-4/6 lg:mb-0'>
-                <span className='text-xl'>FrabLube Summer 2022 Exclusives</span>
+                <span className='text-4xl font-bold'>FrabLube Summer Exclusives</span>
               </div>
               <div className='w-full lg:w-2/6'>
                 <div className='grid grid-rows-4 grid-cols-1 grid-flow-col gap-4'>
                   <div className='flex flex-row'>
                     <span className='font-bold text-xl'>A</span>
                     <div className='flex flex-col ml-4'>
-                      <span className='font-bold text-xl'>Classic Lube 2020</span>
-                      <span className='text-xl'>SPF 30 Sunscreen Lube</span>
+                      <span className='font-bold text-xl'>Frab's Slip & Slide® Oil-based Lube</span>
+                      <span className='text-xl'></span>
                     </div>
                   </div>
                   <div className='flex flex-row'>
                     <span className='font-bold text-xl'>B</span>
                     <div className='flex flex-col ml-4'>
-                      <span className='font-bold text-xl'>Classic Lube 2020</span>
-                      <span className='text-xl'>SPF 30 Sunscreen Lube</span>
+                      <span className='font-bold text-xl'>Frab's Slip & Slide® Water-based Lube</span>
+                      <span className='text-xl'></span>
                     </div>
                   </div>
                   <div className='flex flex-row'>
                     <span className='font-bold text-xl'>C</span>
                     <div className='flex flex-col ml-4'>
-                      <span className='font-bold text-xl'>Classic Lube 2020</span>
-                      <span className='text-xl'>SPF 30 Sunscreen Lube</span>
+                      <span className='font-bold text-xl'>Frab's Slip & Slide® Silion-based Lube</span>
+                      <span className='text-xl'></span>
                     </div>
                   </div>
                   <div className='flex flex-row'>
                     <span className='font-bold text-xl'>D</span>
                     <div className='flex flex-col ml-4'>
-                      <span className='font-bold text-xl'>Classic Lube 2020</span>
-                      <span className='text-xl'>SPF 30 Sunscreen Lube</span>
+                      <span className='font-bold text-xl'>Frab® Towel</span>
+                      <span className='text-xl'>Premium Woven Cotton with triple of the usual thread count</span>
                     </div>
                   </div>
                 </div>
@@ -284,7 +284,7 @@ export default function Home() {
             <ImageWrapper>
               <Image src="/image4.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain'/>
             </ImageWrapper>
-            <div className='absolute w-5/6 flex' style={{left: '30vw', top: '10vw'}}>
+            <div className='absolute w-5/6 flex' style={{left: '30vw', top: '3vw'}}>
               <div className=' w-min border-2 border-black hover:bg-white mx-0'>
                 <span className='mx-2'>D</span>
               </div>
@@ -307,13 +307,15 @@ export default function Home() {
                   </div>
               </div>
             ))}
-            <div className='w-full h-80 bg-purple-500'></div>
+            <div className='w-full h-80 relative'>
+              <Image src="/banner_lube.jpg" layout='fill' objectFit="cover"/>
+            </div>
           </div>
         </div>
         <div className='bg-white'>
           <div className='flex flex-col w-11/12 mx-auto mt-20 pb-20 lg:w-9/12 lg:flex-row'>
             <div className='flex flex-col items-start mr-16 w-full lg:w-3/5'>
-              <span className='text-4xl mb-5'>Ready to dominate Asia with Lotion?</span>
+              <span className='text-4xl mb-5'>Ready to dominate Asia with Lube?</span>
               <span className='text-lg font-light'>Sign up for our waiting list</span>
               <span className='text-lg font-light'>Just joking. Sign up to nutstage to hear what happens next</span>
             </div>
@@ -328,7 +330,7 @@ export default function Home() {
                   <div className='mt-2'>
                     <input name="email_address" className='w-full' aria-label="Email Address" placeholder="Email Address" required="" type="email"/>
                   </div>
-                <button data-element="submit" class="formkit-submit formkit-submit mt-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full">
+                <button data-element="submit" class="formkit-submit formkit-submit mt-2 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-green-700 bg-green-100 hover:bg-green-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full">
                   <div class="formkit-spinner"><div>
                     </div><div></div><div></div></div><span className='w-full'>Subscribe</span></button>
                   </div>          
