@@ -163,7 +163,7 @@ export default function Home() {
             <span className='text-5xl'>Every lotion, sastified.</span> */}
           </div>
           <div className='w-full h-1/2 relative lg:w-5/12 lg:h-full'>
-            <Image src="/hero_lube.jpg" layout='fill' objectFit="cover"/>
+            <Image src="/hero_lube.jpg" layout='fill' objectFit="cover" priority="true"/>
           </div>
         </div>
         <div className='bg-black w-full h-20'>
@@ -252,7 +252,7 @@ export default function Home() {
         <ProductContainer>
           <ProductImageOne>
             <ImageWrapper>
-              <Image src="/image1.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain'/>
+              <Image src="/image1.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain' priority="true"/>
             </ImageWrapper>
             <div className='absolute w-5/6 flex' style={{left: '10vw', top: 0}}>
               <div className=' w-min border-2 border-black hover:bg-white mx-0'>
@@ -262,7 +262,7 @@ export default function Home() {
           </ProductImageOne>
           <ProductImageTwo>
             <ImageWrapper>
-              <Image src="/image2.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain'/>
+              <Image src="/image2.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain' priority="true"/>
             </ImageWrapper>
             <div className='absolute w-5/6 flex' style={{left: '5vw', top: 0}}>
               <div className=' w-min border-2 border-black hover:bg-white mx-0'>
@@ -272,7 +272,7 @@ export default function Home() {
           </ProductImageTwo>
           <ProductImageThree>
             <ImageWrapper>
-              <Image src="/image3.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain'/>
+              <Image src="/image3.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain' priority="true"/>
             </ImageWrapper>
             <div className='absolute w-5/6 flex' style={{left: '50vw', top: '10vw'}}>
               <div className=' w-min border-2 border-black hover:bg-white mx-0'>
@@ -282,7 +282,7 @@ export default function Home() {
           </ProductImageThree>
           <ProductImageFour>
             <ImageWrapper>
-              <Image src="/image4.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain'/>
+              <Image src="/image4.png" layout='responsive' width={"100%"} height={"100%"} objectFit='contain' priority="true"/>
             </ImageWrapper>
             <div className='absolute w-5/6 flex' style={{left: '30vw', top: '3vw'}}>
               <div className=' w-min border-2 border-black hover:bg-white mx-0'>
@@ -308,7 +308,7 @@ export default function Home() {
               </div>
             ))}
             <div className='w-full h-80 relative'>
-              <Image src="/banner_lube.jpg" layout='fill' objectFit="cover"/>
+              <Image src="/banner_lube.jpg" layout='fill' objectFit="cover" priority="true"/>
             </div>
           </div>
         </div>
