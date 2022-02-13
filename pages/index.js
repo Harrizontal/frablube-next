@@ -11,12 +11,16 @@ const stats = [
   { label: 'Raised', value: '$25M' },
 ]
 
-
 const whyFrabLube = [
   { number: 1, title: "Nature's enhancing formulas", description: 'Designed to make the wearer, look and feel like they’ve been to paradise and back.' },
   { number: 2, title: "Sensual waves promised", description: "Make you feel like you’re on a getaway in the golden age of sensitivity in the best way" },
   { number: 3, title: 'Gentle enough for the all types', description: "Made for those with sensitive skin in mind and of course, no stains on clothing" }
 ]
+
+  const waysToOrder = [
+    {title:"Online", description: "No matter where you are, you can order lube in your area and get delivered straight to your door. We charged and wrapped with Privacy in mind.", image: "/frab_mobileapp.png"},
+    {title:"Self pick up", description: "For the bravest one. We'll throw in a towel you while you collect your lube.", image: "/frab_physicalstore.png"}
+  ]
 
   const ImageWrapper = styled.div`
     transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
@@ -147,9 +151,17 @@ export default function Home() {
       <Head>
         <title>FrabLube | Taking over the Lube industry</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <link rel="shortcut icon" href="/favicon.ico" />
       </Head>
-      <div className='bg-white'>
-        <div className='flex flex-col h-160 relative justify-between lg:flex-row'>
+      <div className='bg-white relative'>
+      <div className='bg-white h-20 fixed top-0 left-0 right-0 z-10'>
+        <div className='w-full relative'>
+          <div className='ml-8'>
+            <Image src={"/logo_frablube.png"} width={"100px"} height={"100%"} objectFit="contain"/>
+          </div>
+        </div>
+      </div>
+        <div className='flex flex-col h-160 mt-20 relative justify-between lg:flex-row'>
           <div className='absolute w-full bottom-96 lg:bottom-32'> 
             <div className='w-11/12 mx-auto lg:w-9/12'>
               <div className="flex flex-col w-full lg:w-7/12">
@@ -159,8 +171,6 @@ export default function Home() {
             </div>
           </div>
           <div className='flex flex-col justify-end bg-white h-1/2 w-11/12 mx-auto lg:p-32 lg:w-7/12 lg:h-full'>
-            {/* <span className='text-xl mb-4'>Consumer</span>
-            <span className='text-5xl'>Every lotion, sastified.</span> */}
           </div>
           <div className='w-full h-1/2 relative lg:w-5/12 lg:h-full'>
             <Image src="/hero_lube.jpg" layout='fill' objectFit="cover" priority="true"/>
@@ -179,7 +189,7 @@ export default function Home() {
             <span className='text-xl'>Overview</span>
           </div>
           <div className='w-full lg:w-1/2'>
-            <span className='text-4xl'>Every day, FrabLube delivers lube and towels to millions of consumers islandwide. With a few squeeze on any of the lube, we assure you to have a great time (ok, it depends...)</span>
+            <span className='text-4xl'>Every day, FrabLube delivers lube and towels to millions of consumers islandwide. With a few squeeze on any of our lubes, we assure you to have a great time (ok, it depends...)</span>
           </div>
         </div>
         <div className='mt-10 w-11/12 pb-24 mx-auto lg:w-9/12'>
@@ -201,7 +211,7 @@ export default function Home() {
                       <span className='text-4xl font-medium'>{reason.title}</span>
                     </div>
                     <div className='w-full lg:w-6/12'>
-                      <span className='text-lg font-light'>{reason.description}</span>
+                      <span className='text-xl font-light'>{reason.description}</span>
                     </div>      
                   </div>
                   ))}
@@ -292,23 +302,27 @@ export default function Home() {
           </ProductImageFour>
         </ProductContainer>
         <div className='bg-beige'>
-          <div className='pt-24 pb-36 w-11/12 mx-auto lg:w-9/12'>
+          <div className='pt-24 pb-14 lg:pb-36 w-11/12 mx-auto lg:w-9/12'>
             <div>
-              <span className='font-light text-xl'>Ways to order</span>
+              <span className='text-xl'>Ways to order</span>
             </div>
-            {stats.map((stat) => (
+            {waysToOrder.map((order) => (
               <div className='flex flex-col justify-between mb-20 mt-20 lg:flex-row'>
-                  <div className='flex flex-col mr-8 mb-5 lg:mb-0'>
-                    <span className='text-4xl mb-5'>Instant Delivery</span>
-                    <span className='text-lg font-light'>No matter where you are, you can order food in your area or get islandwide delivery, delivered straight to your door.</span>
+                  <div className='flex flex-col mr-8 mb-5 lg:mb-0 lg:w-3/6'>
+                    <span className='text-4xl mb-5'>{order.title}</span>
+                    <span className='text-xl font-light'>{order.description}</span>
                   </div>
-                  <div className='h-60 bg-purple-200 lg:w-128'>
-
+                  <div className='h-80 bg-purple-200 lg:w-3/6 lg:h-96 relative'>
+                    <Image src={order.image} layout='fill' objectFit="cover" priority="true"/>
                   </div>
               </div>
             ))}
+          </div>
+        </div>
+        <div className='bg-beige pb-16 lg:pb-48'>
+          <div className='w-11/12 mx-auto lg:w-9/12'>
             <div className='w-full h-80 relative'>
-              <Image src="/banner_lube.jpg" layout='fill' objectFit="cover" priority="true"/>
+                  <Image src="/banner_lube.jpg" layout='fill' objectFit="cover" priority="true"/>
             </div>
           </div>
         </div>
@@ -317,7 +331,7 @@ export default function Home() {
             <div className='flex flex-col items-start mr-16 w-full lg:w-3/5'>
               <span className='text-4xl mb-5'>Ready to dominate Asia with Lube?</span>
               <span className='text-lg font-light'>Sign up for our waiting list</span>
-              <span className='text-lg font-light'>Just joking. Sign up to nutstage to hear what happens next</span>
+              <span className='text-lg font-light'>Just joking. Sign up to <a href='https://twitter.com/butterterm' target="_blank" className='underline underline-offset-8'>Butterterm</a> to hear what happens next</span>
             </div>
             <div className='flex flex-row w-full mt-8 lg:mt-0 lg:w-2/5' ref={subscribeNewsletterRef}>
               <form action="https://app.convertkit.com/forms/2958770/subscriptions" className='w-full' class="seva-form formkit-form"  method="post" data-sv-form="2958770" data-uid="d68e008518" data-format="inline" data-version="5" data-options="{&quot;settings&quot;:{&quot;after_subscribe&quot;:{&quot;action&quot;:&quot;message&quot;,&quot;success_message&quot;:&quot;Success! Now check your email to confirm your subscription.&quot;,&quot;redirect_url&quot;:&quot;&quot;},&quot;analytics&quot;:{&quot;google&quot;:null,&quot;facebook&quot;:null,&quot;segment&quot;:null,&quot;pinterest&quot;:null,&quot;sparkloop&quot;:null,&quot;googletagmanager&quot;:null},&quot;modal&quot;:{&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;powered_by&quot;:{&quot;show&quot;:true,&quot;url&quot;:&quot;https://convertkit.com/features/forms?utm_campaign=poweredby&amp;utm_content=form&amp;utm_medium=referral&amp;utm_source=dynamic&quot;},&quot;recaptcha&quot;:{&quot;enabled&quot;:false},&quot;return_visitor&quot;:{&quot;action&quot;:&quot;show&quot;,&quot;custom_content&quot;:&quot;&quot;},&quot;slide_in&quot;:{&quot;display_in&quot;:&quot;bottom_right&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15},&quot;sticky_bar&quot;:{&quot;display_in&quot;:&quot;top&quot;,&quot;trigger&quot;:&quot;timer&quot;,&quot;scroll_percentage&quot;:null,&quot;timer&quot;:5,&quot;devices&quot;:&quot;all&quot;,&quot;show_once_every&quot;:15}},&quot;version&quot;:&quot;5&quot;}">
@@ -342,7 +356,7 @@ export default function Home() {
         <div className='bg-white'>
           <div className='flex flex-col pt-24 pb-10 w-11/12 mx-auto lg:w-11/12 lg:flex-row lg:justify-between'>
             <span className='text-sm'>© Copyright 2021 FrabLube Technologies, Inc. All rights reserved. Various trademarks held by their respective owners</span>
-            <span className='text-sm mt-8 lg:mt-0'><a href='#'>Twitter</a></span>
+            <span className='text-sm mt-8 lg:mt-0'><a href='https://twitter.com/butterterm' target="_blank">Twitter</a></span>
           </div>
         </div>
       </div>
