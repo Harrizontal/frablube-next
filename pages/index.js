@@ -166,7 +166,7 @@ export default function Home() {
             <div className='w-11/12 mx-auto lg:w-9/12'>
               <div className="flex flex-col w-full lg:w-7/12">
                 <span className='text-xl mb-4'>For everyone, duh</span>
-                <span className='text-7xl'>Every Lube, sastified.</span>
+                <span className='text-7xl'>Every Lube, satisfied.</span>
               </div>
             </div>
           </div>
