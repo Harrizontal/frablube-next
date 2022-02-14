@@ -19,7 +19,7 @@ const whyFrabLube = [
 
   const waysToOrder = [
     {title:"Online", description: "No matter where you are, you can order lube in your area and get delivered straight to your door. We charged and wrapped with Privacy in mind.", image: "/frab_mobileapp.png"},
-    {title:"Self pick up", description: "For the bravest one. We'll throw in a towel you while you collect your lube.", image: "/frab_physicalstore.png"}
+    {title:"Self pick up", description: "For the bravest one. We'll throw in a towel while you collect your lube.", image: "/frab_physicalstore.png"}
   ]
 
   const ImageWrapper = styled.div`
